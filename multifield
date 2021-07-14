@@ -1,0 +1,64 @@
+----------------multifield backend ----------------------------------
+
+package prabhakar.core.models;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
+import org.apache.sling.models.annotations.Model;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@Model(adaptables=Resource.class,defaultInjectionStrategy=DefaultInjectionStrategy.OPTIONAL)
+public class FirstmulModel {
+	Logger log=LoggerFactory.getLogger(FirstmulModel.class);
+ 
+	@Inject
+	private List<SubModel> aemcarousel;
+
+	public List<SubModel> getAemcarousel() {
+		
+		log.debug("this is getaemcarousel");
+		return aemcarousel;
+	}
+	
+	
+
+}
+-----------------------------------subclass------------------
+
+package prabhakar.core.models;
+
+import javax.inject.Inject;
+
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
+import org.apache.sling.models.annotations.Model;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@Model(adaptables=Resource.class,defaultInjectionStrategy=DefaultInjectionStrategy.OPTIONAL)
+public class SubModel {
+	Logger log=LoggerFactory.getLogger(SubModel.class);
+
+	public String getImg() {
+		
+		log.debug("text");
+		return img;
+	}
+
+	public String getText() {
+		log.debug("img");
+		return text;
+	}
+	
+	@Inject
+	private String img;
+	
+	@Inject
+	private String text;
+
+}
